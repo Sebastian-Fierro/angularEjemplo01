@@ -1,0 +1,42 @@
+
+
+<div class="card border-primary mb-3 text-center">
+    <div class="card-header">Lista de Productos</div>
+    <div class="card-body text-primary">
+      <div class="table-responsive">
+        @if (products && products.length) {
+
+          <table class="table" *ngIf="products && products.length">
+          <thead>
+            <tr>
+              <th>
+                <button class="btn btn-primary" (click)="toggleImage()">   
+                  <i class="fa fa-eye"></i>
+                  {{showImage ? 'Ocultar' : 'Mostrar'}} Imagenes
+                </button>
+              </th>
+              <th>Producto</th>
+              <th>Codigo</th>
+              <th>Disponible</th>
+              <th>Precio</th>
+              <th>Rating</th>
+            </tr>
+          </thead>
+
+          <tr *ngFor="let producto of products">
+            <td>
+              <img *ngIf="showImage" [src]="producto.imageurl" [title]="producto.productName" [style.width.px]="imageWidth"/>
+            </td>
+            <td>{{producto.productName}}</td>
+            <td>{{producto.productCode}}</td>
+            <td>{{producto.releaseDate}}</td>
+            <td>{{producto.price}}</td>
+            <td><app-star [rating]="producto.starRating"></app-star></td>
+        </table>
+        }@else{
+          <p>No hay productos disponibles.</p>
+        }
+        
+      </div>
+    </div>
+  </div>
