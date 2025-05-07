@@ -25,12 +25,12 @@
 
           <tr *ngFor="let producto of products">
             <td>
-              <img *ngIf="showImage" [src]="producto.imageurl" [title]="producto.productName" [style.width.px]="imageWidth"/>
+              <img *ngIf="showImage" [src]="producto.imageurl" [title]="producto.productName | uppercase" [style.width.px]="imageWidth"/>
             </td>
             <td>{{producto.productName}}</td>
-            <td>{{producto.productCode}}</td>
-            <td>{{producto.releaseDate}}</td>
-            <td>{{producto.price}}</td>
+            <td>{{producto.productCode | lowercase}}</td>
+            <td>{{producto.releaseDate | date:'fullDate'}}</td>
+            <td>{{producto.price | currency: 'CLP'}}</td>
             <td><app-star [rating]="producto.starRating"></app-star></td>
         </table>
         }@else{
